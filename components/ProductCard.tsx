@@ -31,10 +31,10 @@ export default function ProductCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      whileHover={{ scale: 1.05, y: -5 }}
-      className="bg-accent-dark/30 rounded-lg border border-white/20 hover:border-white/50 transition-all group overflow-hidden"
+      whileHover={{ scale: 1.03, y: -8 }}
+      className="bg-accent-dark/40 backdrop-blur-sm rounded-xl border border-white/20 hover:border-white/60 transition-all duration-300 group overflow-hidden card-glow hover:card-glow-hover"
     >
-      <div className="relative aspect-square bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
+      <div className="relative aspect-square bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden group-hover:brightness-110 transition-all duration-300">
         {imageUrl ? (
           <div 
             className="absolute inset-0 bg-cover" 

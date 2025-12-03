@@ -24,7 +24,7 @@ export default function Home() {
 
   // Partículas com valores fixos e independentes - calculadas uma vez
   const particles = useMemo(() => {
-    return Array.from({ length: 20 }, (_, i) => ({
+    return Array.from({ length: 50 }, (_, i) => ({
       id: i,
       initialX: Math.random() * 100,
       initialY: Math.random() * 100,
@@ -139,8 +139,8 @@ export default function Home() {
         {/* Background Image */}
         <ParallaxBackground imageSrc="/show-1.JPG" />
         
-        {/* Background Layers - Overlay adicional para melhorar contraste */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/40 z-[1]" />
+        {/* Background Layers - Gradiente sutil nas bordas */}
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30 z-[1]" style={{ background: 'radial-gradient(circle at center, transparent 0%, transparent 40%, rgba(0,0,0,0.3) 100%)' }} />
         
         {/* Animated Gradient Orbs - Independentes */}
         <motion.div
@@ -248,41 +248,12 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
             >
-              <motion.span
-                className="text-white inline-block relative"
-                animate={{
-                  textShadow: [
-                    "0 0 20px rgba(255,255,255,0.3)",
-                    "0 0 40px rgba(255,255,255,0.5), 0 0 60px rgba(255,255,255,0.3)",
-                    "0 0 20px rgba(255,255,255,0.3)",
-                  ],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
+              <span className="text-white inline-block relative text-glow-subtle">
                 VOE
-              </motion.span>{" "}
-              <motion.span
-                className="text-gray-300 inline-block relative"
-                animate={{
-                  textShadow: [
-                    "0 0 20px rgba(163,163,163,0.3)",
-                    "0 0 40px rgba(163,163,163,0.5), 0 0 60px rgba(163,163,163,0.3)",
-                    "0 0 20px rgba(163,163,163,0.3)",
-                  ],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.5,
-                }}
-              >
+              </span>{" "}
+              <span className="text-gray-300 inline-block relative text-glow-subtle">
                 MUSIC
-              </motion.span>
+              </span>
             </motion.h1>
 
             <motion.p
@@ -328,7 +299,7 @@ export default function Home() {
                   size="lg"
                   variant="neon"
                   onClick={() => scrollToSection("lancamentos")}
-                  className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 w-full sm:w-auto relative overflow-hidden group"
+                  className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 w-full sm:w-auto relative overflow-hidden group backdrop-blur-sm"
                 >
                   <motion.span
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -348,7 +319,7 @@ export default function Home() {
                   size="lg"
                   variant="outline"
                   onClick={() => scrollToSection("agenda")}
-                  className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 w-full sm:w-auto relative overflow-hidden group"
+                  className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 w-full sm:w-auto relative overflow-hidden group backdrop-blur-sm"
                 >
                   <motion.span
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
@@ -393,7 +364,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-8 sm:mb-12 md:mb-16"
           >
-            <h2 className="font-impact text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 sm:mb-6 leading-tight px-2">
+            <h2 className="font-impact text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 sm:mb-6 leading-tight px-2 text-glow-subtle">
               <span className="text-white inline-block">A</span>{" "}
               <span className="text-gray-300 inline-block">BANDA</span>
             </h2>
@@ -409,12 +380,13 @@ export default function Home() {
             >
               {/* Foto da Banda */}
               <div className="relative order-2 md:order-1">
-                <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/20 shadow-2xl">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-white/30 shadow-2xl card-glow hover:card-glow-hover transition-all duration-300">
                   <img
                     src="/banda.jpg"
                     alt="VOE MUSIC - A Banda"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </div>
 
@@ -447,7 +419,7 @@ export default function Home() {
       </section>
 
       {/* Lançamentos Section */}
-      <section id="lancamentos" className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-black to-accent-dark">
+      <section id="lancamentos" className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-black via-accent-dark/50 to-accent-dark">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -456,65 +428,75 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="font-impact text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 sm:mb-6 leading-tight px-2">
+            <h2 className="font-impact text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 sm:mb-6 leading-tight px-2 text-glow-subtle">
               <span className="text-white inline-block">LANÇAMENTOS</span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
               Nossas músicas e álbuns disponíveis nas principais plataformas
             </p>
             <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-4">
-              <a
+              <motion.a
                 href="https://open.spotify.com/intl-pt/artist/5NUftlA80vjye1K0oxwiSv?si=gL0djgC0QnO5VYBOl136dg"
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Button variant="outline" size="lg" className="text-xs sm:text-sm md:text-base">
+                <Button variant="outline" size="lg" className="text-xs sm:text-sm md:text-base backdrop-blur-sm">
                   <Music2 size={16} className="mr-1 sm:mr-2" />
                   <span className="hidden sm:inline">Spotify</span>
                   <span className="sm:hidden">Spotify</span>
                 </Button>
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://music.youtube.com/channel/UCRnwjs_17IJuY50tKI7V6Jw"
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Button variant="outline" size="lg" className="text-xs sm:text-sm md:text-base">
+                <Button variant="outline" size="lg" className="text-xs sm:text-sm md:text-base backdrop-blur-sm">
                   <Play size={16} className="mr-1 sm:mr-2" />
                   <span className="hidden sm:inline">YouTube Music</span>
                   <span className="sm:hidden">YT Music</span>
                 </Button>
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://www.deezer.com/br/artist/11362762"
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="backdrop-blur-sm">
                   <Music2 size={20} className="mr-2" />
                   Deezer
                 </Button>
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://music.amazon.com.br/artists/B06XP8DDXJ/voe-music"
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="backdrop-blur-sm">
                   <Music2 size={20} className="mr-2" />
                   Amazon Music
                 </Button>
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://music.apple.com/br/artist/voe-music/1818668346"
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="backdrop-blur-sm">
                   <Music2 size={20} className="mr-2" />
                   Apple Music
                 </Button>
-              </a>
+              </motion.a>
             </div>
           </motion.div>
 
@@ -573,7 +555,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-8 sm:mb-12 md:mb-16"
           >
-            <h2 className="font-impact text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 sm:mb-6 leading-tight px-2">
+            <h2 className="font-impact text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 sm:mb-6 leading-tight px-2 text-glow-subtle">
               <span className="text-white inline-block">LOJA</span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
@@ -633,7 +615,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-8 sm:mb-12 md:mb-16"
           >
-            <h2 className="font-impact text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 sm:mb-6 leading-tight px-2">
+            <h2 className="font-impact text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 sm:mb-6 leading-tight px-2 text-glow-subtle">
               <span className="text-white inline-block">AGENDA</span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
@@ -649,7 +631,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
-                className="relative h-[350px] sm:h-[400px] md:h-[450px] lg:h-full min-h-[400px] rounded-xl sm:rounded-2xl overflow-hidden border border-white/20 shadow-2xl order-2 lg:order-1"
+                className="relative h-[350px] sm:h-[400px] md:h-[450px] lg:h-full min-h-[400px] rounded-xl sm:rounded-2xl overflow-hidden border border-white/20 shadow-2xl order-1 lg:order-1"
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center"
@@ -666,7 +648,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="relative order-1 lg:order-2 flex items-stretch"
+                className="relative order-2 lg:order-2 flex items-stretch"
               >
                 <div className="w-full bg-black/80 backdrop-blur-xl p-4 sm:p-5 md:p-6 lg:p-7 rounded-xl sm:rounded-2xl border border-white/20 shadow-2xl">
                   <div className="text-center mb-4 sm:mb-5">
@@ -757,7 +739,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-8 sm:mb-12 md:mb-16"
           >
-            <h2 className="font-impact text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 sm:mb-6 leading-tight px-2">
+            <h2 className="font-impact text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 sm:mb-6 leading-tight px-2 text-glow-subtle">
               <span className="text-white inline-block">CONTATO</span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
@@ -774,8 +756,8 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-              className="bg-accent-dark/30 p-4 sm:p-6 md:p-8 rounded-lg border border-white/20 hover:border-white/50 transition-all text-center group"
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="bg-accent-dark/40 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-xl border border-white/20 hover:border-white/60 transition-all duration-300 text-center group card-glow hover:card-glow-hover"
             >
               <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <Music2 size={24} className="sm:size-7 md:size-8 text-white" />
@@ -792,8 +774,8 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              className="bg-accent-dark/30 p-8 rounded-lg border border-white/20 hover:border-white/50 transition-all text-center group"
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="bg-accent-dark/40 backdrop-blur-sm p-8 rounded-xl border border-white/20 hover:border-white/60 transition-all duration-300 text-center group card-glow hover:card-glow-hover"
             >
               <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <Music2 size={24} className="sm:size-7 md:size-8 text-white" />
@@ -810,8 +792,8 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              whileHover={{ scale: 1.05 }}
-              className="bg-accent-dark/30 p-8 rounded-lg border border-white/20 hover:border-white/50 transition-all text-center group"
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="bg-accent-dark/40 backdrop-blur-sm p-8 rounded-xl border border-white/20 hover:border-white/60 transition-all duration-300 text-center group card-glow hover:card-glow-hover"
             >
               <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <MessageCircle size={24} className="sm:size-7 md:size-8 text-white" />

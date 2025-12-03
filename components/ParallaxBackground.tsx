@@ -24,11 +24,11 @@ export default function ParallaxBackground({
           objectPosition: "center 40%", // Foca na parte inferior, escondendo completamente o topo com texto
         }}
       />
-      {/* Overlay escuro para melhorar legibilidade do texto */}
-      <div className="absolute inset-0 bg-black/60" />
-      {/* Overlay mais escuro no topo para esconder qualquer texto */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-black/80" />
-      <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black to-transparent" />
+      {/* Gradiente escuro nas bordas - efeito vinheta */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60" />
+      {/* Gradiente mais escuro no topo para esconder qualquer texto */}
+      <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black/90 via-black/60 to-transparent" />
     </div>
   );
 }

@@ -27,8 +27,8 @@ export default function ReleaseCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      whileHover={{ scale: 1.05, y: -5 }}
-      className="bg-accent-dark/30 rounded-lg border border-white/20 hover:border-white/50 transition-all group overflow-hidden"
+      whileHover={{ scale: 1.03, y: -8 }}
+      className="bg-accent-dark/40 backdrop-blur-sm rounded-xl border border-white/20 hover:border-white/60 transition-all duration-300 group overflow-hidden card-glow hover:card-glow-hover"
     >
       <div className="relative aspect-square bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
         {coverUrl ? (
@@ -52,11 +52,11 @@ export default function ReleaseCard({
             <Music size={64} className="text-white/30" />
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110">
           {youtubeUrl && (
-            <a href={youtubeUrl} target="_blank" rel="noopener noreferrer">
-              <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors">
+            <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform">
+              <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center hover:bg-white/40 transition-all shadow-lg hover:shadow-xl">
                 <Play size={24} className="text-white ml-1" fill="white" />
               </div>
             </a>
