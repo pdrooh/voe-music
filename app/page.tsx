@@ -6,6 +6,7 @@ import { ChevronDown, ArrowRight, Music2, Calendar, MessageCircle, ShoppingBag, 
 import { Button } from "@/components/ui/button";
 import ReleaseCard from "@/components/ReleaseCard";
 import ProductCard from "@/components/ProductCard";
+import ParallaxBackground from "@/components/ParallaxBackground";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -135,12 +136,15 @@ export default function Home() {
         id="home"
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
-        {/* Background Layers */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
+        {/* Background Image */}
+        <ParallaxBackground imageSrc="/show-1.JPG" />
+        
+        {/* Background Layers - Overlay adicional para melhorar contraste */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/40 z-[1]" />
         
         {/* Animated Gradient Orbs - Independentes */}
         <motion.div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_50%)] pointer-events-none"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_50%)] pointer-events-none z-[2]"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -152,7 +156,7 @@ export default function Home() {
           }}
         />
         <motion.div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(163,163,163,0.03),transparent_50%)] pointer-events-none"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(163,163,163,0.03),transparent_50%)] pointer-events-none z-[2]"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.2, 0.4, 0.2],
@@ -165,7 +169,7 @@ export default function Home() {
           }}
         />
         <motion.div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.02),transparent_50%)] pointer-events-none"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.02),transparent_50%)] pointer-events-none z-[2]"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.1, 0.3, 0.1],
@@ -180,7 +184,7 @@ export default function Home() {
         
         {/* Animated Grain Overlay - Independente */}
         <motion.div
-          className="absolute inset-0 bg-grain opacity-30 pointer-events-none"
+          className="absolute inset-0 bg-grain opacity-30 pointer-events-none z-[2]"
           animate={{
             opacity: [0.2, 0.4, 0.2],
           }}
@@ -195,7 +199,7 @@ export default function Home() {
         {mounted && particles.map((particle) => (
           <motion.div
             key={particle.id}
-            className="absolute w-0.5 sm:w-1 h-0.5 sm:h-1 bg-white rounded-full"
+            className="absolute w-0.5 sm:w-1 h-0.5 sm:h-1 bg-white rounded-full z-[3]"
             style={{
               left: `${particle.initialX}%`,
               top: `${particle.initialY}%`,
@@ -217,7 +221,7 @@ export default function Home() {
         
         {/* Animated Light Rays - Independente */}
         <motion.div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none z-[2]"
           style={{
             background: "linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.03) 50%, transparent 70%)",
             backgroundSize: "200% 200%",
@@ -577,26 +581,43 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <ProductCard
-              name="Camiseta VOE MUSIC"
-              price="R$ 79,90"
+              name="Camiseta VOE MUSIC - Modelo 1"
+              price="R$ 120,00"
+              imageUrl="/camiseta-1.jpg"
+              imagePosition="center 35%"
               available={true}
-              whatsappLink="https://api.whatsapp.com/send/?phone=5514998592865&text=Olá%21+Gostaria+de+comprar+a+Camiseta+VOE+MUSIC&type=phone_number&app_absent=0"
+              whatsappLink="https://api.whatsapp.com/send/?phone=5514998592865&text=Olá%21+Gostaria+de+comprar+a+Camiseta+VOE+MUSIC+-+Modelo+1&type=phone_number&app_absent=0"
               delay={0}
             />
             <ProductCard
-              name="Camiseta VOE MUSIC - Edição Especial"
-              price="R$ 99,90"
+              name="Camiseta VOE MUSIC - Modelo 2"
+              price="R$ 120,00"
+              imageUrl="/camiseta-2.jpg"
+              imagePosition="center 35%"
               available={true}
-              whatsappLink="https://api.whatsapp.com/send/?phone=5514998592865&text=Olá%21+Gostaria+de+comprar+a+Camiseta+VOE+MUSIC+Edição+Especial&type=phone_number&app_absent=0"
+              whatsappLink="https://api.whatsapp.com/send/?phone=5514998592865&text=Olá%21+Gostaria+de+comprar+a+Camiseta+VOE+MUSIC+-+Modelo+2&type=phone_number&app_absent=0"
               delay={0.1}
             />
             <ProductCard
-              name="Moletom VOE MUSIC"
-              price="R$ 149,90"
-              available={false}
+              name="Camiseta VOE MUSIC - Modelo 3"
+              price="R$ 120,00"
+              imageUrl="/camiseta-3.jpg"
+              imagePosition="center 30%"
+              available={true}
+              whatsappLink="https://api.whatsapp.com/send/?phone=5514998592865&text=Olá%21+Gostaria+de+comprar+a+Camiseta+VOE+MUSIC+-+Modelo+3&type=phone_number&app_absent=0"
               delay={0.2}
+            />
+            <ProductCard
+              name="Camiseta VOE MUSIC - Modelo 4"
+              price="R$ 120,00"
+              imageUrl="/camiseta-4.jpg"
+              imagePosition="center 20%"
+              imageScale={1.3}
+              available={true}
+              whatsappLink="https://api.whatsapp.com/send/?phone=5514998592865&text=Olá%21+Gostaria+de+comprar+a+Camiseta+VOE+MUSIC+-+Modelo+4&type=phone_number&app_absent=0"
+              delay={0.3}
             />
           </div>
         </div>
@@ -620,85 +641,108 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="max-w-2xl mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="bg-accent-dark/30 p-4 sm:p-6 md:p-8 rounded-lg border border-white/20"
-            >
-              <div className="text-center mb-6 sm:mb-8">
-                <Calendar size={48} className="sm:hidden mx-auto mb-3 text-white" />
-                <Calendar size={64} className="hidden sm:block mx-auto mb-4 text-white" />
-                <h3 className="text-condensed text-2xl sm:text-3xl text-white mb-3 sm:mb-4">AGENDAR SHOW</h3>
-                <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6">
-                  Preencha o formulário abaixo ou entre em contato diretamente pelo WhatsApp
-                </p>
-              </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-stretch">
+              {/* Imagem em Destaque */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="relative h-[350px] sm:h-[400px] md:h-[450px] lg:h-full min-h-[400px] rounded-xl sm:rounded-2xl overflow-hidden border border-white/20 shadow-2xl order-2 lg:order-1"
+              >
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url(/agenda.PNG)`,
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </motion.div>
 
-              <form className="space-y-3 sm:space-y-4" onSubmit={handleSubmit}>
-                <input
-                  type="text"
-                  name="nome"
-                  placeholder="Nome"
-                  required
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base bg-black border border-white/30 rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:border-white"
-                />
-                <input
-                  type="text"
-                  name="pastor"
-                  placeholder="Pastor da igreja local"
-                  required
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base bg-black border border-white/30 rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:border-white"
-                />
-                <input
-                  type="text"
-                  name="igreja"
-                  placeholder="Nome da igreja"
-                  required
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base bg-black border border-white/30 rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:border-white"
-                />
-                <input
-                  type="tel"
-                  name="contato"
-                  placeholder="Contato responsável (WhatsApp)"
-                  required
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base bg-black border border-white/30 rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:border-white"
-                />
-                <input
-                  type="date"
-                  name="data"
-                  placeholder="Data do evento"
-                  required
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base bg-black border border-white/30 rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:border-white"
-                />
-                <input
-                  type="text"
-                  name="local"
-                  placeholder="Local do evento"
-                  required
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base bg-black border border-white/30 rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:border-white"
-                />
-                <Button variant="neon" className="w-full text-sm sm:text-base py-3 sm:py-4" type="submit">
-                  Enviar Solicitação
-                </Button>
-              </form>
+              {/* Formulário em Card Elegante */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="relative order-1 lg:order-2 flex items-stretch"
+              >
+                <div className="w-full bg-black/80 backdrop-blur-xl p-4 sm:p-5 md:p-6 lg:p-7 rounded-xl sm:rounded-2xl border border-white/20 shadow-2xl">
+                  <div className="text-center mb-4 sm:mb-5">
+                    <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-white/10 mb-2 sm:mb-3">
+                      <Calendar size={24} className="sm:size-7 md:size-8 text-white" />
+                    </div>
+                    <h3 className="text-condensed text-xl sm:text-2xl md:text-3xl lg:text-3xl text-white mb-2 sm:mb-3 leading-tight">AGENDAR SHOW</h3>
+                    <p className="text-xs sm:text-sm text-gray-300 mb-4 sm:mb-5 px-2">
+                      Preencha o formulário abaixo ou entre em contato diretamente pelo WhatsApp
+                    </p>
+                  </div>
 
-              <div className="mt-6 text-center">
-                <p className="text-sm text-gray-400 mb-4">ou</p>
-                <a
-                  href="https://api.whatsapp.com/send/?phone=5514998592865&text=Olá%21+Gostaria+de+saber+mais+informações+para+uma+possível+agenda+da+VOE+MUSIC.&type=phone_number&app_absent=0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="outline" size="lg" className="w-full text-sm sm:text-base py-3 sm:py-4">
-                    <MessageCircle size={18} className="sm:size-5 mr-2" />
-                    Falar no WhatsApp
-                  </Button>
-                </a>
-              </div>
-            </motion.div>
+                  <form className="space-y-2.5 sm:space-y-3" onSubmit={handleSubmit}>
+                    <input
+                      type="text"
+                      name="nome"
+                      placeholder="Nome"
+                      required
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm bg-black/50 border border-white/20 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:border-white/50 focus:bg-black/70 transition-all"
+                    />
+                    <input
+                      type="text"
+                      name="pastor"
+                      placeholder="Pastor da igreja local"
+                      required
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm bg-black/50 border border-white/20 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:border-white/50 focus:bg-black/70 transition-all"
+                    />
+                    <input
+                      type="text"
+                      name="igreja"
+                      placeholder="Nome da igreja"
+                      required
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm bg-black/50 border border-white/20 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:border-white/50 focus:bg-black/70 transition-all"
+                    />
+                    <input
+                      type="tel"
+                      name="contato"
+                      placeholder="Contato responsável (WhatsApp)"
+                      required
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm bg-black/50 border border-white/20 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:border-white/50 focus:bg-black/70 transition-all"
+                    />
+                    <input
+                      type="date"
+                      name="data"
+                      placeholder="Data do evento"
+                      required
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm bg-black/50 border border-white/20 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:border-white/50 focus:bg-black/70 transition-all"
+                    />
+                    <input
+                      type="text"
+                      name="local"
+                      placeholder="Local do evento"
+                      required
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm bg-black/50 border border-white/20 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:border-white/50 focus:bg-black/70 transition-all"
+                    />
+                    <Button variant="neon" className="w-full text-xs sm:text-sm py-2.5 sm:py-3 mt-1" type="submit">
+                      Enviar Solicitação
+                    </Button>
+                  </form>
+
+                  <div className="mt-4 sm:mt-5 text-center">
+                    <p className="text-xs text-gray-400 mb-3">ou</p>
+                    <a
+                      href="https://api.whatsapp.com/send/?phone=5514998592865&text=Olá%21+Gostaria+de+saber+mais+informações+para+uma+possível+agenda+da+VOE+MUSIC.&type=phone_number&app_absent=0"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button variant="outline" size="lg" className="w-full text-xs sm:text-sm py-2.5 sm:py-3">
+                        <MessageCircle size={16} className="sm:size-4 mr-2" />
+                        Falar no WhatsApp
+                      </Button>
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>

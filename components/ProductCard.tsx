@@ -8,6 +8,8 @@ interface ProductCardProps {
   name: string;
   price: string;
   imageUrl?: string;
+  imagePosition?: string; // Para ajustar o posicionamento da imagem (ex: "center 30%", "center top", etc)
+  imageScale?: number; // Para dar zoom na imagem (ex: 1.2 = 20% de zoom)
   available: boolean;
   whatsappLink?: string;
   delay?: number;
@@ -17,6 +19,8 @@ export default function ProductCard({
   name,
   price,
   imageUrl,
+  imagePosition = "center center",
+  imageScale = 1,
   available,
   whatsappLink,
   delay = 0,
@@ -30,9 +34,16 @@ export default function ProductCard({
       whileHover={{ scale: 1.05, y: -5 }}
       className="bg-accent-dark/30 rounded-lg border border-white/20 hover:border-white/50 transition-all group overflow-hidden"
     >
-      <div className="relative aspect-square bg-gradient-to-br from-gray-800 to-gray-900">
+      <div className="relative aspect-square bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
         {imageUrl ? (
-          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${imageUrl})` }} />
+          <div 
+            className="absolute inset-0 bg-cover" 
+            style={{ 
+              backgroundImage: `url(${imageUrl})`,
+              backgroundPosition: imagePosition,
+              backgroundSize: imageScale !== 1 ? `${100 * imageScale}%` : 'cover',
+            }} 
+          />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
             <ShoppingBag size={64} className="text-white/30" />
