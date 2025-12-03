@@ -1,0 +1,67 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ShoppingBag, Check } from "lucide-react";
+import { Button } from "./ui/button";
+
+interface ProductCardProps {
+  name: string;
+  price: string;
+  imageUrl?: string;
+  available: boolean;
+  whatsappLink?: string;
+  delay?: number;
+}
+
+export default function ProductCard({
+  name,
+  price,
+  imageUrl,
+  available,
+  whatsappLink,
+  delay = 0,
+}: ProductCardProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay }}
+      whileHover={{ scale: 1.05, y: -5 }}
+      className="bg-accent-dark/30 rounded-lg border border-white/20 hover:border-white/50 transition-all group overflow-hidden"
+    >
+      <div className="relative aspect-square bg-gradient-to-br from-gray-800 to-gray-900">
+        {imageUrl ? (
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${imageUrl})` }} />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <ShoppingBag size={64} className="text-white/30" />
+          </div>
+        )}
+        {!available && (
+          <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+            <span className="text-condensed text-lg text-white">ESGOTADO</span>
+          </div>
+        )}
+      </div>
+      <div className="p-6">
+        <h3 className="text-condensed text-xl text-white mb-2">{name}</h3>
+        <p className="text-lg font-bold text-white mb-4">{price}</p>
+        {available && whatsappLink ? (
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="block">
+            <Button variant="neon" className="w-full">
+              <ShoppingBag size={18} className="mr-2" />
+              Comprar no WhatsApp
+            </Button>
+          </a>
+        ) : (
+          <Button variant="outline" className="w-full" disabled>
+            <Check size={18} className="mr-2" />
+            Indisponível
+          </Button>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
